@@ -1,0 +1,77 @@
+.form {
+    margin: 3rem auto;
+    width: 95%;
+    max-width: 25rem;
+    border-radius: 6px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .form h1 {
+    text-align: center;
+    color: rgb(3, 3, 3);
+  }
+  
+  .control {
+    margin-bottom: 0.5rem;
+  }
+  
+  .control input {
+    font: inherit;
+    background-color: white;
+    border-radius: 4px;
+    border-color: transparent;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    width: 95%;
+    text-align: left;
+    padding: 0.25rem;
+  }
+
+  .control input:hover,
+  .control input:active,
+  .control input:focus{
+    background-color: rgb(203, 234, 255);
+   }
+  
+  .actions {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .actions button {
+    cursor: pointer;
+    font: inherit;
+    color: white;
+    background-color: #688cf9;
+    border: 1px solid #75a0fe;
+    border-radius: 50px;
+    padding: 0.5rem 5rem;
+  }
+  
+  .actions button:hover {
+    background-color: #4f55f8;
+    border-color: #6278f8;
+  }
+  
+  .login button{
+    background-color: rgb(223, 252, 242);
+    border: 1px solid rgb(215, 215, 215);
+    text-align: center;
+    left: 37.44%;
+    width: 25%;
+    margin: 12px auto;
+    border-radius: 5px;
+    padding: 10px;
+    transition: background-color 1s;
+}
+
+
+.login button:hover,
+.login button:focus{
+    background-color: rgb(125, 174, 157);
+}
