@@ -53,14 +53,11 @@ const AuthForm = () => {
                     setIsLogin(true);
                     navigate('/expense');
                 }else{
+                    setIsLoading(false);
                     const data = await response.json();
                     alert(data.error.message);
-                    if(data.error.message === 'EMAIL_NOT_FOUND'){
-                        emailInputRef.current.value = null;
-                        passwordInputRef.current.value = null;
-                    }else if(data.error.message === 'PASSWORD INVALID'){
-                        passwordInputRef.current.value = null;
-                    }
+                    emailInputRef.current.value = null;
+                    passwordInputRef.current.value = null;
                 }
                 
             }catch (err) {
@@ -68,6 +65,7 @@ const AuthForm = () => {
             }
         }else {
             if(enteredPassword !== confirmPasswordRef.current.value){
+                setIsLoading(false);
                 passwordInputRef.current.value = null;
                 confirmPasswordRef.current.value = null;
                 alert("Password doesn't match!");
@@ -89,12 +87,13 @@ const AuthForm = () => {
                     )
                     if(res.ok){
                         setIsLoading(false);
-                        console.log("User has successfully signed up.");
+                        alert("User has successfully signed up.");
                         emailInputRef.current.value = "";
                         passwordInputRef.current.value = "";
                         confirmPasswordRef.current.value = "";
                         setIsLogin(false);
                     }else{
+                        setIsLoading(false);
                         const data = await res.json();
                         alert(data.error.message);
                     }
@@ -106,21 +105,13 @@ const AuthForm = () => {
         
     };
 
-    /*const resetInput = (error) => {
-        if(error === 'EMAIL_EXISTS'){
-            emailInputRef.current.value = null;
-            passwordInputRef.current.value = null;
-        }else if(error === 'PASSWORD INVALID'){
-            passwordInputRef.current.value = null;
-        }
-    };*/
 
     return (
         <section>
             <div className={classes.form}>
                 <h1>{isLogin? "Login" : "Sign Up"}</h1>
                 <form onSubmit={submitHandler}>
-                    <div className={classes.control}>
+                    <div className= {isLogin? classes.input : classes.control}>
                         <input 
                             type='email' 
                             placeholder="Email" 
@@ -129,7 +120,7 @@ const AuthForm = () => {
                             required
                         />
                     </div>
-                    <div className={classes.control}>
+                    <div className={isLogin? classes.input : classes.control}>
                         <input 
                             type="password" 
                             placeholder="Password" 
@@ -153,6 +144,7 @@ const AuthForm = () => {
                     </div>
                     <div className={classes.actions}>
                         {!isLoading && (<button>{isLogin? "Login" : "Sign Up"}</button>)}
+                        {isLoading && (<p>Sending Request...</p>)}
                         {isLogin && <a href="#">Forget Password</a>}
                     </div>
                 </form>

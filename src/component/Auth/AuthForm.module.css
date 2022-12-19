@@ -35,6 +35,20 @@
   .control input:focus{
     background-color: rgb(203, 234, 255);
    }
+
+  .input input{
+    margin-bottom: 0.5rem;
+    font: inherit;
+    color: white;
+    background-color: rgb(10, 10, 10);
+    border-radius: 25px;
+    border-color: transparent;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    width: 95%;
+    text-align: left;
+    text-decoration-color: rgb(102, 101, 101);
+    padding: 0.25rem;
+   }
   
   .actions {
     margin-top: 1.5rem;
