@@ -1,9 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
 
 import classes from  './AuthForm.module.css';
 
 const AuthForm = () => {
+    const authCtx = useContext(AuthContext);
     const emailInputRef = useRef();
     const passwordInputRef = useRef();
     const confirmPasswordRef = useRef();
@@ -46,12 +48,12 @@ const AuthForm = () => {
                     const data = await response.json();
 
                     alert("User has successfully Loged in.");
-                    localStorage.setItem("Token", data.idToken);
+                    authCtx.login(data.idToken);
                     localStorage.setItem("userID", data.localId);
                     emailInputRef.current.value = "";
                     passwordInputRef.current.value = "";
                     setIsLogin(true);
-                    navigate('/expense');
+                    navigate('/home');
                 }else{
                     setIsLoading(false);
                     const data = await response.json();
@@ -104,7 +106,6 @@ const AuthForm = () => {
         }
         
     };
-
 
     return (
         <section>
