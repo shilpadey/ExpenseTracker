@@ -3,6 +3,7 @@ import {  Navigate, Route,  Routes  } from 'react-router-dom';
 import './App.css';
 import AuthForm from './component/Auth/AuthForm';
 import HomePage from './pages/HomePage';
+import PrivateRoute from './PrivateRoute';
 import AuthContext from './store/auth-context';
 import { AuthContextProvider } from './store/auth-context';
 
@@ -14,7 +15,9 @@ function App() {
       <AuthContextProvider>
         <Routes>
           {!athCntx.isLoggedIn && <Route path='/auth' element={ <AuthForm /> }/>}
-          {athCntx.isLoggedIn && <Route path='/home'  element={ <HomePage /> }/>}
+          <PrivateRoute path='/home' exact>
+            <HomePage />
+          </PrivateRoute>
           <Route path="*" element={<Navigate replace to='/auth' />} />
         </Routes>
       </AuthContextProvider>
